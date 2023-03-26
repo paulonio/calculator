@@ -1,9 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const Title = styled.h1`
-    font-size: 20px;
-    line-height: 24px;
-    color: #FFFFFF;
+const StyledTitle = styled.h1`
+  font-size: 24px;
+  line-height: 27px;
+  font-weight: 400;
+  color: #ffffff;
 `;
+
+const Title = (props) => {
+  return <StyledTitle {...props} />;
+};
 
 export default Title;
