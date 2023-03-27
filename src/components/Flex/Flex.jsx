@@ -6,7 +6,9 @@ const StyledFlex = styled.div`
   flex-direction: ${({ direction }) => direction || 'row'};
   align-items: ${({ align }) => align || 'stretch'};
   justify-content: ${({ justify }) => justify || 'stretch'};
+  flex-wrap: ${({ wrap }) => wrap || 'nowrap'};
   height: ${({ height }) => height || 'auto'};
+  width: ${({ width }) => width || 'auto'};
   background-color: ${({ backgroundColor }) => backgroundColor || 'inherit'};
 `;
 

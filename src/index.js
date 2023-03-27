@@ -8,7 +8,7 @@ const Global = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    bix-sizing: border-box;
+    box-sizing: border-box;
     font-family: 'Inter', sans-serif;
   }
 `;

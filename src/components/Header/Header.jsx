@@ -10,6 +10,7 @@ const Header = () => {
       justify="space-between"
       backgroundColor="#404040"
       height="80px"
+      width="100%"
     >
       <Title>Calculator app</Title>
       <Nav />
