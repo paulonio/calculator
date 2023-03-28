@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import chooseAction from '../../utils/chooseAction';
 
 const StyledButton = styled.button`
   width: 80px;
@@ -29,8 +31,17 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = (props) => {
-  return <StyledButton {...props} />;
+const Button = ({ type, value, children }, ...props) => {
+  const dispatch = useDispatch();
+
+  const action = chooseAction(type, value);
+  const clickHandler = () => dispatch(action);
+
+  return (
+    <StyledButton onClick={clickHandler} {...props}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;

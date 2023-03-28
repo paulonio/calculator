@@ -13,8 +13,10 @@ const Buttons = (props) => {
   return (
     <StyledButtons>
       <Flex wrap="wrap" {...props}>
-        {buttons.map((button, idx) => (
-          <Button key={button + idx}>{button}</Button>
+        {buttons.map(({ id, type, value }) => (
+          <Button key={id} type={type} value={value}>
+            {value}
+          </Button>
         ))}
       </Flex>
     </StyledButtons>

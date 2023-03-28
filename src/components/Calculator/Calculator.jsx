@@ -1,7 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Buttons from '../Buttons/Buttons';
-import Input from '../Input/Input';
 
 const StyledCalculator = styled.div`
   max-width: 75%;
@@ -10,9 +10,16 @@ const StyledCalculator = styled.div`
 `;
 
 const Calculator = (props) => {
+  const state = useSelector((state) => state.calculator);
+
   return (
     <StyledCalculator {...props}>
-      <Input />
+      <div>
+        <div style={{ height: '50px' }}>
+          {state.previousOperand} {state.operation}
+        </div>
+        <div style={{ height: '50px' }}>{state.currentOperand}</div>
+      </div>
       <Buttons />
     </StyledCalculator>
   );
