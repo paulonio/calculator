@@ -11,6 +11,8 @@ const evals = (previous, current, operation) => {
       return prev * curr;
     case '÷':
       return prev / curr;
+    case '%':
+      return prev % curr;
   }
 }
 
