@@ -15,9 +15,7 @@ const Calculator = (props) => {
   return (
     <StyledCalculator {...props}>
       <div>
-        <div style={{ height: '50px' }}>
-          {state.previousOperand} {state.operation}
-        </div>
+        <div style={{ height: '50px' }}>{state.previousOperations.join('')}</div>
         <div style={{ height: '50px' }}>{state.currentOperand}</div>
       </div>
       <Buttons />

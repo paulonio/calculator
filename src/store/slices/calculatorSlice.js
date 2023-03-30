@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import evals from '../../utils/evals';
 
-const initialState = { previousOperand: '', operation: '', currentOperand: '', overwrite: false };
+const initialState = { previousOperations: [], currentOperand: '', overwrite: false };
 
 export const calculatorSlice = createSlice({
   name: 'calculator',
@@ -29,6 +29,24 @@ export const calculatorSlice = createSlice({
         currentOperand: state.currentOperand + action.payload.digit,
       };
     },
+    addOperation: (state, action) => {
+      const operand = state.currentOperand && Number(state.currentOperand);
+      if (!state.currentOperand) {
+        return state;
+      }
+      if (operand) {
+        return {
+          ...state,
+          previousOperations: [...state.previousOperations, operand, action.payload.operation],
+          currentOperand: '',
+        };
+      }
+      return {
+        ...state,
+        previousOperations: [...state.previousOperations, action.payload.operation],
+        currentOperand: '',
+      };
+    },
     addDot: (state, action) => {
       if (state.currentOperand.includes('.')) {
         return state;
@@ -38,57 +56,70 @@ export const calculatorSlice = createSlice({
         currentOperand: state.currentOperand + action.payload.dot,
       };
     },
+    addParenthesis: (state, action) => {
+      const parenthesis = action.payload.parenthesis;
+      const operand = state.currentOperand && Number(state.currentOperand);
+      if (parenthesis === '(' && operand) {
+        return {
+          ...state,
+          previousOperations: [...state.previousOperations, operand, '×', parenthesis],
+          currentOperand: '',
+        };
+      } else if (parenthesis === '(') {
+        return {
+          ...state,
+          previousOperations: [...state.previousOperations, parenthesis],
+          currentOperand: '',
+        };
+      } else {
+        return {
+          ...state,
+          previousOperations: [...state.previousOperations, operand, parenthesis],
+          currentOperand: '',
+        };
+      }
+    },
+    clear: () => {
+      return initialState;
+    },
     deleteDigit: (state) => {
       return {
         ...state,
         currentOperand: state.currentOperand.slice(0, -1),
       };
     },
-    clear: () => {
-      return initialState;
-    },
-    operate: (state, action) => {
-      if (!!state.operation) {
-        return {
-          ...state,
-          operation: action.payload.operation,
-        };
-      }
-      if (!state.currentOperand) {
-        return state;
-      }
-      return {
-        ...state,
-        previousOperand: state.currentOperand,
-        operation: action.payload.operation,
-        currentOperand: '',
-      };
-    },
     changeSign: (state) => {
       const current = Number(state.currentOperand);
-      // const result = -current;
       return {
         ...state,
         currentOperand: `${-current}`,
       };
     },
     evaluate: (state) => {
-      let result = evals(state.previousOperand, state.currentOperand, state.operation);
+      const operand = state.currentOperand && Number(state.currentOperand);
+      let [result] = evals([...state.previousOperations, operand]);
       if (!Number.isInteger(result)) {
         result = result.toFixed(3);
       }
       return {
         ...state,
-        currentOperand: `${result}`,
-        previousOperand: '',
-        operation: '',
+        previousOperations: [],
+        currentOperand: result,
         overwrite: true,
       };
     },
   },
 });
 
-export const { addDigit, deleteDigit, clear, operate, evaluate, addDot, changeSign } =
-  calculatorSlice.actions;
+export const {
+  addDigit,
+  addOperation,
+  addDot,
+  addParenthesis,
+  deleteDigit,
+  clear,
+  changeSign,
+  evaluate,
+} = calculatorSlice.actions;
 
 export default calculatorSlice.reducer;
