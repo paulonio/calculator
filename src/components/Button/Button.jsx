@@ -16,11 +16,9 @@ const StyledButton = styled.button`
   transition: opacity 0.3s;
   &:nth-child(5n + 1) {
     margin-left: 0;
-    background-color: red;
   }
   &:nth-child(5n) {
     margin-right: 0;
-    background-color: blue;
   }
   &:hover {
     cursor: pointer;

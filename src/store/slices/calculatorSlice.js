@@ -8,6 +8,10 @@ export const calculatorSlice = createSlice({
   initialState,
   reducers: {
     addDigit: (state, action) => {
+      const previous = state.previousOperations;
+      if (previous[previous.length - 1] === ')') {
+        return state;
+      }
       if (action.payload.digit === '0' && state.currentOperand === '0') {
         return state;
       }
@@ -30,11 +34,38 @@ export const calculatorSlice = createSlice({
       };
     },
     addOperation: (state, action) => {
-      const operand = state.currentOperand && Number(state.currentOperand);
+      const operand = !Number.isNaN(state.currentOperand) && Number(state.currentOperand);
+      const lastSymbol = state.previousOperations[state.previousOperations.length - 1];
+      if (lastSymbol === ')') {
+        return {
+          ...state,
+          previousOperations: [...state.previousOperations, action.payload.operation],
+          currentOperand: '',
+        };
+      }
       if (!state.currentOperand) {
+        if (
+          lastSymbol === '+' ||
+          lastSymbol === '-' ||
+          lastSymbol === '×' ||
+          lastSymbol === '÷' ||
+          lastSymbol === '%'
+        ) {
+          return {
+            ...state,
+            previousOperations: [
+              ...state.previousOperations.slice(0, -1),
+              action.payload.operation,
+            ],
+          };
+        }
         return state;
       }
-      if (operand) {
+
+      if (state.currentOperand[state.currentOperand.length - 1] === '.') {
+        return state;
+      }
+      if (operand || operand === 0) {
         return {
           ...state,
           previousOperations: [...state.previousOperations, operand, action.payload.operation],
@@ -58,23 +89,34 @@ export const calculatorSlice = createSlice({
     },
     addParenthesis: (state, action) => {
       const parenthesis = action.payload.parenthesis;
-      const operand = state.currentOperand && Number(state.currentOperand);
+      const operand = !Number.isNaN(state.currentOperand) && Number(state.currentOperand);
+      const previous = state.previousOperations;
+      if (state.currentOperand === '' && parenthesis === ')') {
+        return {
+          ...state,
+          previousOperations: [...previous, parenthesis],
+          currentOperand: '',
+        };
+      }
       if (parenthesis === '(' && operand) {
         return {
           ...state,
-          previousOperations: [...state.previousOperations, operand, '×', parenthesis],
+          previousOperations: [...previous, operand, '×', parenthesis],
           currentOperand: '',
         };
       } else if (parenthesis === '(') {
         return {
           ...state,
-          previousOperations: [...state.previousOperations, parenthesis],
-          currentOperand: '',
+          previousOperations: [...previous, parenthesis],
+          currentOperand: '0',
+          overwrite: true,
         };
+      } else if (parenthesis === ')' && !previous.includes('(')) {
+        return state;
       } else {
         return {
           ...state,
-          previousOperations: [...state.previousOperations, operand, parenthesis],
+          previousOperations: [...previous, operand, parenthesis],
           currentOperand: '',
         };
       }
@@ -90,16 +132,35 @@ export const calculatorSlice = createSlice({
     },
     changeSign: (state) => {
       const current = Number(state.currentOperand);
+      if (Number.isNaN(current)) {
+        return state;
+      }
+      if (state.currentOperand === '') {
+        return {
+          ...state,
+          previousOperations: [...state.previousOperations, '('],
+          currentOperand: '-',
+        };
+      }
       return {
         ...state,
+        previousOperations: [...state.previousOperations, '('],
         currentOperand: `${-current}`,
       };
     },
     evaluate: (state) => {
-      const operand = state.currentOperand && Number(state.currentOperand);
-      let [result] = evals([...state.previousOperations, operand]);
+      const operand = !Number.isNaN(state.currentOperand) && Number(state.currentOperand);
+      if (state.currentOperand[state.currentOperand.length - 1] === '.') {
+        return state;
+      }
+      let [result] =
+        state.currentOperand === ''
+          ? evals([...state.previousOperations])
+          : evals([...state.previousOperations, operand]);
       if (!Number.isInteger(result)) {
         result = result.toFixed(3);
+      } else {
+        result = result.toString();
       }
       return {
         ...state,

@@ -7,6 +7,9 @@ const evaluate = (first, second, operation) => {
     case '×':
       return first * second;
     case '÷':
+      if (second === 0) {
+        throw 'You cannot divide by zero!';
+      }
       return first / second;
     case '%':
       return first % second;
@@ -60,16 +63,18 @@ const evals = (expression) => {
       operations.pop();
     }
   });
-
   while (operations.length > 0) {
     const second = numbers.pop();
     const first = numbers.pop();
     const operation = operations.pop();
     if (operation === '(') {
-      return 'One parenthesis';
+      throw 'One parenthesis';
     }
     const result = evaluate(first, second, operation);
     numbers.push(result);
+  }
+  if (!numbers[0] || Number.isNaN(numbers[0])) {
+    throw 'Incorrect expression!';
   }
   return numbers;
 };
