@@ -2,6 +2,7 @@ import React from 'react';
 import { CalculatorWrapper, HistoryWrapper, MainElement, Wrapper } from './styled';
 import { Container } from '../Container/Container';
 import Calculator from '../Calculator/Calculator';
+import History from '../History/History';
 
 const Main = () => {
   return (
@@ -11,7 +12,7 @@ const Main = () => {
           <CalculatorWrapper>
             <Calculator />
           </CalculatorWrapper>
-          <HistoryWrapper>I am History</HistoryWrapper>
+          <History />
         </Wrapper>
       </Container>
     </MainElement>
