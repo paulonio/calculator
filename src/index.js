@@ -13,6 +13,9 @@ const Global = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
   }
+  body {
+   background-color: #202c37;
+  }
 `;
 
 const root = createRoot(document.querySelector('.root'));

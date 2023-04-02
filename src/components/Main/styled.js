@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-const MainElement = styled.main`
-  background-color: #212c35;
-`;
+const MainElement = styled.main``;
 
 const Wrapper = styled.div`
   display: flex;

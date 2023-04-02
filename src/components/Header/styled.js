@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const HeaderElement = styled.header`
+  background-color: #2b3945;
   box-shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
-  background-color: #212c35;
 `;
 
 const Wrapper = styled.div`
