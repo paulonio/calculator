@@ -73,7 +73,7 @@ const evals = (expression) => {
     const result = evaluate(first, second, operation);
     numbers.push(result);
   }
-  if (!numbers[0] || Number.isNaN(numbers[0])) {
+  if ((!numbers[0] || Number.isNaN(numbers[0])) && numbers[0] !== 0) {
     throw 'Incorrect expression!';
   }
   return numbers;

@@ -142,6 +142,12 @@ export const calculatorSlice = createSlice({
           currentOperand: '-',
         };
       }
+      if (state.previousOperations.slice(-1)[0] === '(') {
+        return {
+          ...state,
+          currentOperand: `${-current}`,
+        };
+      }
       return {
         ...state,
         previousOperations: [...state.previousOperations, '('],
@@ -150,6 +156,9 @@ export const calculatorSlice = createSlice({
     },
     evaluate: (state) => {
       const operand = !Number.isNaN(state.currentOperand) && Number(state.currentOperand);
+      if (state.previousOperations.length === 0) {
+        return state;
+      }
       if (state.currentOperand[state.currentOperand.length - 1] === '.') {
         return state;
       }
