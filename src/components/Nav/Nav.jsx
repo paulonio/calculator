@@ -4,10 +4,10 @@ import { List, ListLink } from './styled';
 const Nav = () => {
   return (
     <List>
-      <ListLink active="true">Home</ListLink>
-      <ListLink>HomeCC</ListLink>
-      <ListLink>Settings</ListLink>
-      <ListLink>SettingsCC</ListLink>
+      <ListLink to="/">Home</ListLink>
+      <ListLink to="/homeCC">HomeCC</ListLink>
+      <ListLink to="/settings">Settings</ListLink>
+      <ListLink to="/settingsCC">SettingsCC</ListLink>
     </List>
   );
 };
