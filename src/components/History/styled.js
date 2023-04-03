@@ -16,6 +16,8 @@ const Title = styled.h3`
 `;
 
 const List = styled.ul`
+  width: 70%;
+  margin: 0 auto;
   color: white;
 `;
 

@@ -4,6 +4,7 @@ const initialState = {
   previousOperations: [],
   currentOperand: '',
   overwrite: false,
+  history: [],
   error: null,
 };
 
@@ -125,12 +126,26 @@ export const calculatorSlice = createSlice({
         };
       }
     },
-    clear: () => {
-      return initialState;
+    clear: (state) => {
+      return {
+        ...state,
+        currentOperand: '',
+        previousOperations: [],
+        history: [...state.history],
+        overwrite: false,
+        error: null,
+      };
     },
     deleteDigit: (state) => {
       if (state.overwrite) {
-        return initialState;
+        return {
+          ...state,
+          currentOperand: '',
+          previousOperations: [],
+          history: [...state.history],
+          overwrite: false,
+          error: null,
+        };
       }
       return {
         ...state,
@@ -162,6 +177,7 @@ export const calculatorSlice = createSlice({
       };
     },
     evaluate: (state, action) => {
+      const operations = `${state.previousOperations.join(' ')} ${state.currentOperand}`.trim();
       if (state.previousOperations.length === 0) {
         return state;
       }
@@ -178,6 +194,7 @@ export const calculatorSlice = createSlice({
       }
       return {
         ...state,
+        history: [...state.history, operations],
         previousOperations: [],
         currentOperand: action.payload.result,
         overwrite: true,
