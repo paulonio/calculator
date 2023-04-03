@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import MainCC from '../components/Main/MainCC';
 
-const HomeCC = () => {
-  return <div>I am Home CC!</div>;
-};
+class HomeCC extends Component {
+  render() {
+    return <MainCC />;
+  }
+}
 
 export default HomeCC;
