@@ -26,7 +26,7 @@ const chooseAction = (type, value) => {
     case 'posneg':
       return changeSign();
     case 'evaluate':
-      return evaluate();
+      return evaluate({ result: value });
   }
 };
 

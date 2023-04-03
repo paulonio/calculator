@@ -26,8 +26,12 @@ const ButtonElement = styled.button`
     cursor: pointer;
     opacity: 0.5;
   }
-  &:active {
+  &:enabled:active {
     background-color: #f4a261;
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
   }
 `;
 

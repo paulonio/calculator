@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import evals from '../../utils/evals';
 
-const initialState = { previousOperations: [], currentOperand: '', overwrite: false };
+const initialState = {
+  previousOperations: [],
+  currentOperand: '',
+  overwrite: false,
+  error: null,
+};
 
 export const calculatorSlice = createSlice({
   name: 'calculator',
@@ -125,6 +129,9 @@ export const calculatorSlice = createSlice({
       return initialState;
     },
     deleteDigit: (state) => {
+      if (state.overwrite) {
+        return initialState;
+      }
       return {
         ...state,
         currentOperand: state.currentOperand.slice(0, -1),
@@ -154,27 +161,25 @@ export const calculatorSlice = createSlice({
         currentOperand: `${-current}`,
       };
     },
-    evaluate: (state) => {
-      const operand = !Number.isNaN(state.currentOperand) && Number(state.currentOperand);
+    evaluate: (state, action) => {
       if (state.previousOperations.length === 0) {
         return state;
       }
       if (state.currentOperand[state.currentOperand.length - 1] === '.') {
         return state;
       }
-      let [result] =
-        state.currentOperand === ''
-          ? evals([...state.previousOperations])
-          : evals([...state.previousOperations, operand]);
-      if (!Number.isInteger(result)) {
-        result = result.toFixed(3);
-      } else {
-        result = result.toString();
+      if (typeof action.payload.result === 'object') {
+        return {
+          ...state,
+          previousOperations: [],
+          currentOperand: action.payload.result.error,
+          error: action.payload.result,
+        };
       }
       return {
         ...state,
         previousOperations: [],
-        currentOperand: result,
+        currentOperand: action.payload.result,
         overwrite: true,
       };
     },
