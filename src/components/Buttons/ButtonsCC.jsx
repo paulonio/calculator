@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '../Button/Button';
 import { buttons } from '../../constants/constants';
 import { Wrapper } from './styled';
 import ButtonCC from '../Button/ButtonCC';

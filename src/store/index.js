@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import calculatorReducer from './slices/calculatorSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import calculatorReducer from './slices/calculatorSlice';
 
 export default configureStore({
   reducer: {
     calculator: calculatorReducer,
   },
-})
+});

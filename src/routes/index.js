@@ -1,8 +1,6 @@
 import { useRoutes } from 'react-router-dom';
 import { routes } from '../constants/routes';
 
-const RouterElement = () => {
-  return useRoutes(routes);
-};
+const RouterElement = () => useRoutes(routes);
 
 export { RouterElement };

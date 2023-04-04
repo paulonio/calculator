@@ -19,4 +19,6 @@ const HistoryWrapper = styled.div`
   padding: 16px;
 `;
 
-export { MainElement, Wrapper, CalculatorWrapper, HistoryWrapper };
+export {
+  MainElement, Wrapper, CalculatorWrapper, HistoryWrapper,
+};

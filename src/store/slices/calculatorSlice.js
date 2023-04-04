@@ -50,11 +50,11 @@ export const calculatorSlice = createSlice({
       }
       if (!state.currentOperand) {
         if (
-          lastSymbol === '+' ||
-          lastSymbol === '-' ||
-          lastSymbol === '×' ||
-          lastSymbol === '÷' ||
-          lastSymbol === '%'
+          lastSymbol === '+'
+          || lastSymbol === '-'
+          || lastSymbol === '×'
+          || lastSymbol === '÷'
+          || lastSymbol === '%'
         ) {
           return {
             ...state,
@@ -93,7 +93,7 @@ export const calculatorSlice = createSlice({
       };
     },
     addParenthesis: (state, action) => {
-      const parenthesis = action.payload.parenthesis;
+      const { parenthesis } = action.payload;
       const operand = !Number.isNaN(state.currentOperand) && Number(state.currentOperand);
       const previous = state.previousOperations;
       if (state.currentOperand === '' && parenthesis === ')') {
@@ -109,33 +109,30 @@ export const calculatorSlice = createSlice({
           previousOperations: [...previous, operand, '×', parenthesis],
           currentOperand: '',
         };
-      } else if (parenthesis === '(') {
+      } if (parenthesis === '(') {
         return {
           ...state,
           previousOperations: [...previous, parenthesis],
           currentOperand: '0',
           overwrite: true,
         };
-      } else if (parenthesis === ')' && !previous.includes('(')) {
+      } if (parenthesis === ')' && !previous.includes('(')) {
         return state;
-      } else {
-        return {
-          ...state,
-          previousOperations: [...previous, operand, parenthesis],
-          currentOperand: '',
-        };
       }
-    },
-    clear: (state) => {
       return {
         ...state,
+        previousOperations: [...previous, operand, parenthesis],
         currentOperand: '',
-        previousOperations: [],
-        history: [...state.history],
-        overwrite: false,
-        error: null,
       };
     },
+    clear: (state) => ({
+      ...state,
+      currentOperand: '',
+      previousOperations: [],
+      history: [...state.history],
+      overwrite: false,
+      error: null,
+    }),
     deleteDigit: (state) => {
       if (state.overwrite) {
         return {
