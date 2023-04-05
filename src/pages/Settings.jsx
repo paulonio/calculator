@@ -1,7 +1,8 @@
 import React from 'react';
+import SettingsMain from '../components/Settings/Settings';
 
 const Settings = () => {
-  return <div>Settings!</div>;
+  return <SettingsMain />;
 };
 
 export default Settings;
