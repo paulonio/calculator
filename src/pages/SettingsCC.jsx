@@ -1,7 +1,8 @@
 import React from 'react';
+import SettingsMainCC from '../components/Settings/SettingsMainCC';
 
 const SettingsCC = () => {
-  return <div>SettingsCC</div>;
+  return <SettingsMainCC />;
 };
 
 export default SettingsCC;

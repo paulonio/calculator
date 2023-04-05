@@ -1,6 +1,6 @@
 import React from 'react';
-import { SettingsElement, Wrapper, Select, Title, Label, Checkbox } from './styled';
 import { Container } from '../Container/Container';
+import { SettingsElement, Wrapper, Select, Title, Label, Checkbox } from './styled';
 
 const SettingsMain = () => {
   return (
@@ -14,7 +14,6 @@ const SettingsMain = () => {
           </Select>
           <Label>
             <Checkbox />
-            {/* <input type="checkbox" name="history" /> */}
             Hide history
           </Label>
         </Wrapper>
