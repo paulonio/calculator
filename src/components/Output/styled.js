@@ -10,8 +10,8 @@ const PreviousResults = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-color: black;
-  color: white;
+  background-color: ${({ theme }) => theme.colors.backgroundButton};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 20px;
   line-height: 24px;
   opacity: 0.7;
@@ -24,8 +24,8 @@ const Current = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-color: black;
-  color: white;
+  background-color: ${({ theme }) => theme.colors.backgroundButton};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 20px;
   line-height: 24px;
   border-radius: 0 0 4px 4px;

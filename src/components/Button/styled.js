@@ -4,13 +4,13 @@ const ButtonElement = styled.button`
   width: 80px;
   height: 80px;
   margin: 16px;
-  background-color: #121420;
-  color: white;
+  background-color: ${({ theme }) => theme.colors.backgroundButton};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 40px;
   line-height: 48px;
-  border: none;
+  border: ${({ theme }) => (theme.name === 'light-theme' ? '1px solid #2b3945' : 'none')};
   border-radius: 4px;
-  transition: opacity 0.3s;
+  transition: background-color 0.3s;
   &:nth-child(5n + 1) {
     margin-left: 0;
   }
@@ -21,10 +21,13 @@ const ButtonElement = styled.button`
     width: 192px;
     margin-right: 0;
     background-color: #e76f51;
+    &:enabled:hover {
+      background-color: #e87e64;
+    }
   }
-  &:hover {
+  &:enabled:hover {
     cursor: pointer;
-    opacity: 0.5;
+    background-color: ${({ theme }) => theme.colors.backgroundButtonHover};
   }
   &:enabled:active {
     background-color: #f4a261;

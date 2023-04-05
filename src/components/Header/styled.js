@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const HeaderElement = styled.header`
-  background-color: #2b3945;
+  background-color: ${({ theme }) => theme.colors.backgroundHeader};
   box-shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
 `;
 
@@ -16,7 +16,7 @@ const Title = styled.h1`
   font-size: 24px;
   line-height: 27px;
   font-weight: 400;
-  color: #ffffff;
+  color: #cccccc;
 `;
 
 export { HeaderElement, Wrapper, Title };

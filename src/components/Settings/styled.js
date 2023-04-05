@@ -14,23 +14,23 @@ const Title = styled.h3`
   font-size: 20px;
   line-height: 24px;
   font-weight: 400;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Select = styled.select`
   width: 100%;
   max-width: 160px;
-  background-color: #121420;
-  color: white;
+  background-color: ${({ theme }) => theme.colors.backgroundButton};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 16px;
   line-height: 19px;
   padding: 8px;
   border-radius: 4px;
   border: none;
-  transition: opacity 0.3s;
+  transition: background-color 0.3s;
   &:hover {
     cursor: pointer;
-    opacity: 0.5;
+    background-color: ${({ theme }) => theme.colors.backgroundButtonHover};
   }
 `;
 
@@ -42,7 +42,7 @@ const Label = styled.label`
   align-items: center;
   font-size: 16px;
   line-height: 19px;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   user-select: none;
   &:hover {
     cursor: pointer;

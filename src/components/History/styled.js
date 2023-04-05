@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h3`
   padding: 16px 0;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 20px;
   font-weight: 400;
 `;
@@ -18,7 +18,7 @@ const Title = styled.h3`
 const List = styled.ul`
   width: 70%;
   margin: 0 auto;
-  color: white;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const ListItem = styled.li`
@@ -29,6 +29,4 @@ const ListItem = styled.li`
   }
 `;
 
-export {
-  Wrapper, Title, List, ListItem,
-};
+export { Wrapper, Title, List, ListItem };
