@@ -50,14 +50,15 @@ export const calculatorSlice = createSlice({
       }
       if (!state.currentOperand) {
         if (
-          lastSymbol === '+'
-          || lastSymbol === '-'
-          || lastSymbol === '×'
-          || lastSymbol === '÷'
-          || lastSymbol === '%'
+          lastSymbol === '+' ||
+          lastSymbol === '-' ||
+          lastSymbol === '×' ||
+          lastSymbol === '÷' ||
+          lastSymbol === '%'
         ) {
           return {
             ...state,
+            overwrite: false,
             previousOperations: [
               ...state.previousOperations.slice(0, -1),
               action.payload.operation,
@@ -73,12 +74,14 @@ export const calculatorSlice = createSlice({
       if (operand || operand === 0) {
         return {
           ...state,
+          overwrite: false,
           previousOperations: [...state.previousOperations, operand, action.payload.operation],
           currentOperand: '',
         };
       }
       return {
         ...state,
+        overwrite: false,
         previousOperations: [...state.previousOperations, action.payload.operation],
         currentOperand: '',
       };
@@ -109,14 +112,16 @@ export const calculatorSlice = createSlice({
           previousOperations: [...previous, operand, '×', parenthesis],
           currentOperand: '',
         };
-      } if (parenthesis === '(') {
+      }
+      if (parenthesis === '(') {
         return {
           ...state,
           previousOperations: [...previous, parenthesis],
           currentOperand: '0',
           overwrite: true,
         };
-      } if (parenthesis === ')' && !previous.includes('(')) {
+      }
+      if (parenthesis === ')' && !previous.includes('(')) {
         return state;
       }
       return {
