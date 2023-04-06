@@ -21,6 +21,7 @@ const SettingsMain = () => {
     const showHistory = event.target.checked;
     const action = toggleHistory({ showHistory });
     dispatch(action);
+    localStorage.setItem('show-history', showHistory);
   };
 
   return (

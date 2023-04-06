@@ -21,12 +21,10 @@ const Global = createGlobalStyle`
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const showHistory = Boolean(localStorage.getItem('show-history'));
-
-    if (showHistory) {
-      const action = toggleHistory({ showHistory });
-      dispatch(action);
-    }
+    const isHistoryShown = localStorage.getItem('show-history');
+    const showHistory = isHistoryShown === 'true' ? true : false;
+    const action = toggleHistory({ showHistory });
+    dispatch(action);
   }, []);
 
   return (
