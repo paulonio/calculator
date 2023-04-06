@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { List, ListItem, Wrapper, Title } from './styled';
 import { connect } from 'react-redux';
-// import { useSelector } from 'react-redux';
 
 class HistoryCC extends Component {
   render() {

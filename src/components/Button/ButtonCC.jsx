@@ -34,8 +34,4 @@ function mapStateToProps(state) {
   return { expression };
 }
 
-function mapDispatchToProps(dispatch) {
-  return { dispatch };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ButtonCC);
+export default connect(mapStateToProps)(ButtonCC);

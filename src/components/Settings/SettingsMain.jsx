@@ -3,14 +3,23 @@ import { Container } from '../Container/Container';
 import { SettingsElement, Wrapper, Select, Title, Label, Checkbox } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTheme } from '../../store/slices/themeSlice';
+import { toggleHistory } from '../../store/slices/historySlice';
 
 const SettingsMain = () => {
   const theme = useSelector((state) => state.theme.theme);
+  const showHistory = useSelector((state) => state.history.showHistory);
   const dispatch = useDispatch();
 
   const handleThemeChange = (event) => {
     const theme = event.target.value;
     const action = changeTheme({ theme });
+    dispatch(action);
+    localStorage.setItem('theme', theme);
+  };
+
+  const handleHistoryChange = (event) => {
+    const showHistory = event.target.checked;
+    const action = toggleHistory({ showHistory });
     dispatch(action);
   };
 
@@ -24,8 +33,8 @@ const SettingsMain = () => {
             <option value="dark">Dark theme</option>
           </Select>
           <Label>
-            <Checkbox />
-            Hide history
+            <Checkbox checked={showHistory} onChange={handleHistoryChange} />
+            Show history
           </Label>
         </Wrapper>
       </Container>

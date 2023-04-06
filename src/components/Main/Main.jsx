@@ -3,8 +3,11 @@ import { CalculatorWrapper, HistoryWrapper, MainElement, Wrapper } from './style
 import { Container } from '../Container/Container';
 import Calculator from '../Calculator/Calculator';
 import History from '../History/History';
+import { useSelector } from 'react-redux';
 
 const Main = () => {
+  const showHistory = useSelector((state) => state.history.showHistory);
+
   return (
     <MainElement>
       <Container>
@@ -12,7 +15,7 @@ const Main = () => {
           <CalculatorWrapper>
             <Calculator />
           </CalculatorWrapper>
-          <History />
+          {showHistory && <History />}
         </Wrapper>
       </Container>
     </MainElement>

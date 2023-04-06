@@ -3,16 +3,26 @@ import { Container } from '../Container/Container';
 import { SettingsElement, Wrapper, Select, Title, Label, Checkbox } from './styled';
 import { connect } from 'react-redux';
 import { changeTheme } from '../../store/slices/themeSlice';
+import { toggleHistory } from '../../store/slices/historySlice';
 
 class SettingsMainCC extends Component {
   handleThemeChange(event) {
     const theme = event.target.value;
     const action = changeTheme({ theme });
     this.props.dispatch(action);
+    localStorage.setItem('theme', theme);
+  }
+
+  handleHistoryChange(event) {
+    const showHistory = event.target.checked;
+    const action = toggleHistory({ showHistory });
+    this.props.dispatch(action);
+    localStorage.setItem('show-history', showHistory);
   }
 
   render() {
     const theme = this.props.theme;
+    const showHistory = this.props.showHistory;
 
     return (
       <SettingsElement>
@@ -24,8 +34,8 @@ class SettingsMainCC extends Component {
               <option value="dark">Dark theme</option>
             </Select>
             <Label>
-              <Checkbox />
-              Hide history
+              <Checkbox checked={showHistory} onChange={this.handleHistoryChange.bind(this)} />
+              Show history
             </Label>
           </Wrapper>
         </Container>
@@ -36,11 +46,8 @@ class SettingsMainCC extends Component {
 
 function mapStateToProps(state) {
   const theme = state.theme.theme;
-  return { theme };
+  const showHistory = state.history.showHistory;
+  return { theme, showHistory };
 }
 
-function mapDispatchToProps(dispatch) {
-  return { dispatch };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsMainCC);
+export default connect(mapStateToProps)(SettingsMainCC);

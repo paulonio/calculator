@@ -3,9 +3,12 @@ import { MainElement, Wrapper, CalculatorWrapper } from './styled';
 import { Container } from '../Container/Container';
 import CalculatorCC from '../Calculator/CalculatorCC';
 import HistoryCC from '../History/HistoryCC';
+import { connect } from 'react-redux';
 
 class MainCC extends Component {
   render() {
+    const showHistory = this.props.showHistory;
+
     return (
       <MainElement>
         <Container>
@@ -13,7 +16,7 @@ class MainCC extends Component {
             <CalculatorWrapper>
               <CalculatorCC />
             </CalculatorWrapper>
-            <HistoryCC />
+            {showHistory && <HistoryCC />}
           </Wrapper>
         </Container>
       </MainElement>
@@ -21,4 +24,9 @@ class MainCC extends Component {
   }
 }
 
-export default MainCC;
+function mapStateToProps(state) {
+  const showHistory = state.history.showHistory;
+  return { showHistory };
+}
+
+export default connect(mapStateToProps)(MainCC);
