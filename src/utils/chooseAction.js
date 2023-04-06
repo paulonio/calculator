@@ -5,6 +5,8 @@ import {
   addParenthesis,
   changeSign,
   clear,
+  clearHistory,
+  clearAll,
   deleteDigit,
   evaluate,
 } from '../store/slices/calculatorSlice';
@@ -23,6 +25,10 @@ const chooseAction = (type, value) => {
       return deleteDigit();
     case 'clear':
       return clear();
+    case 'clear-history':
+      return clearHistory();
+    case 'clear-all':
+      return clearAll();
     case 'posneg':
       return changeSign();
     case 'evaluate':

@@ -130,14 +130,25 @@ export const calculatorSlice = createSlice({
         currentOperand: '',
       };
     },
-    clear: (state) => ({
-      ...state,
-      currentOperand: '',
-      previousOperations: [],
-      history: [...state.history],
-      overwrite: false,
-      error: null,
-    }),
+    clear: (state) => {
+      return {
+        ...state,
+        currentOperand: '',
+        previousOperations: [],
+        history: [...state.history],
+        overwrite: false,
+        error: null,
+      };
+    },
+    clearHistory: (state) => {
+      return {
+        ...state,
+        history: [],
+      };
+    },
+    clearAll: () => {
+      return initialState;
+    },
     deleteDigit: (state) => {
       if (state.overwrite) {
         return {
@@ -212,6 +223,8 @@ export const {
   addParenthesis,
   deleteDigit,
   clear,
+  clearHistory,
+  clearAll,
   changeSign,
   evaluate,
 } = calculatorSlice.actions;
