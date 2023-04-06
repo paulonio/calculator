@@ -8,7 +8,7 @@ class ButtonsCC extends Component {
     return (
       <Wrapper>
         {buttons.map(({ id, type, value }) => (
-          <ButtonCC key={id} type={type} value={value}>
+          <ButtonCC key={id} type={type} value={value} handler={this.setState.bind(this)}>
             {value}
           </ButtonCC>
         ))}

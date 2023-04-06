@@ -92,6 +92,7 @@ export const calculatorSlice = createSlice({
       }
       return {
         ...state,
+        overwrite: false,
         currentOperand: state.currentOperand + action.payload.dot,
       };
     },

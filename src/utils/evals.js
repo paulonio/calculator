@@ -1,4 +1,13 @@
-const evaluate = (first, second, operation) => {
+const priorities = {
+  default: 0,
+  '+': 1,
+  '-': 1,
+  '×': 2,
+  '÷': 2,
+  '%': 2,
+};
+
+const evaluate = ({ first, second, operation }) => {
   switch (operation) {
     case '+':
       return first + second;
@@ -16,15 +25,6 @@ const evaluate = (first, second, operation) => {
   }
 };
 
-const priorities = {
-  default: 0,
-  '+': 1,
-  '-': 1,
-  '×': 2,
-  '÷': 2,
-  '%': 2,
-};
-
 const evals = (expression) => {
   const numbers = [];
   const operations = [];
@@ -38,7 +38,8 @@ const evals = (expression) => {
         const second = numbers.pop();
         const first = numbers.pop();
         const operation = operations.pop();
-        const result = evaluate(first, second, operation);
+        const action = { first, second, operation };
+        const result = evaluate(action);
         numbers.push(result);
         lastOperation = operations[operations.length - 1] || 'default';
       }
@@ -53,7 +54,8 @@ const evals = (expression) => {
         const second = numbers.pop();
         const first = numbers.pop();
         const operation = operations.pop();
-        const result = evaluate(first, second, operation);
+        const action = { first, second, operation };
+        const result = evaluate(action);
         numbers.push(result);
         lastOperation = operations[operations.length - 1];
         if (operations.length === 0) {
@@ -70,7 +72,8 @@ const evals = (expression) => {
     if (operation === '(') {
       throw { error: 'One parenthesis' };
     }
-    const result = evaluate(first, second, operation);
+    const action = { first, second, operation };
+    const result = evaluate(action);
     numbers.push(result);
   }
   if ((!numbers[0] || Number.isNaN(numbers[0])) && numbers[0] !== 0) {

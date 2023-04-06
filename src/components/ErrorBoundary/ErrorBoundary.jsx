@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { isError: false };
+    this.state = { isError: false, error: null };
   }
 
   static getDerivedStateFromError(error) {
-    return { isError: true };
+    return { isError: true, error };
   }
 
   render() {
     if (this.state.isError) {
-      return <div>Something went wrong!</div>;
+      return <div>{this.state.error}</div>;
     }
     return this.props.children;
   }

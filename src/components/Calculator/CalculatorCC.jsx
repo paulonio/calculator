@@ -7,8 +7,8 @@ class CalculatorCC extends Component {
   render() {
     return (
       <>
-        <OutputCC />
         <ErrorBoundary>
+          <OutputCC />
           <ButtonsCC />
         </ErrorBoundary>
       </>
