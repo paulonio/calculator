@@ -6,10 +6,11 @@ class OutputCC extends Component {
   render() {
     const previous = this.props.previous;
     const current = this.props.current;
+    const error = this.props.error;
     return (
       <Wrapper>
         <PreviousResults>{previous.join(' ')}</PreviousResults>
-        <Current>{current}</Current>
+        <Current>{error ? error : current}</Current>
       </Wrapper>
     );
   }
