@@ -90,6 +90,9 @@ export const calculatorSlice = createSlice({
       if (state.currentOperand.includes('.')) {
         return state;
       }
+      if (state.previousOperations[state.previousOperations.length - 1] === ')') {
+        return state;
+      }
       return {
         ...state,
         overwrite: false,
@@ -121,6 +124,9 @@ export const calculatorSlice = createSlice({
           currentOperand: '0',
           overwrite: true,
         };
+      }
+      if (Number.isNaN(Number(state.currentOperand))) {
+        return state;
       }
       if (parenthesis === ')' && !previous.includes('(')) {
         return state;
