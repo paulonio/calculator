@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Buttons from '../Buttons/Buttons';
+import Output from '../Output/Output';
 import OutputCC from '../Output/OutputCC';
 import ButtonsCC from '../Buttons/ButtonsCC';
 
@@ -18,19 +20,22 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.isError) {
+      if (this.props.isClass) {
+        return (
+          <>
+            <OutputCC error={this.state.error} />
+            <ButtonsCC isError={true} resetError={this.resetError.bind(this)} />
+          </>
+        );
+      }
       return (
         <>
-          <OutputCC error={this.state.error} />
-          <ButtonsCC disabled={true} resetError={this.resetError.bind(this)} />
+          <Output error={this.state.error} />
+          <Buttons isError={true} resetError={this.resetError.bind(this)} />
         </>
       );
     }
-    return (
-      <>
-        <OutputCC />
-        <ButtonsCC />
-      </>
-    );
+    return this.props.children;
   }
 }
 

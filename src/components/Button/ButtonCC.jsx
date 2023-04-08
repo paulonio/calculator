@@ -3,7 +3,7 @@ import { ButtonElement } from './styled';
 import chooseAction from '../../utils/chooseAction';
 import { connect } from 'react-redux';
 import { getResult } from '../../utils/getResult';
-import { evaluate } from '../../store/slices/calculatorSlice';
+import { clear, evaluate } from '../../store/slices/calculatorSlice';
 
 class ButtonCC extends Component {
   constructor(props) {
@@ -27,6 +27,8 @@ class ButtonCC extends Component {
         const action = evaluate({ result });
         this.props.dispatch(action);
       } catch (error) {
+        const clearOutput = clear();
+        this.props.dispatch(clearOutput);
         this.setState(error);
       }
     } else {

@@ -6,13 +6,12 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 class CalculatorCC extends Component {
   render() {
     return (
-      <ErrorBoundary />
-      // <>
-      //   <ErrorBoundary>
-      //     <OutputCC />
-      //     <ButtonsCC />
-      //   </ErrorBoundary>
-      // </>
+      <>
+        <ErrorBoundary isClass={true}>
+          <OutputCC />
+          <ButtonsCC />
+        </ErrorBoundary>
+      </>
     );
   }
 }

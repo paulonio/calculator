@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import chooseAction from '../../utils/chooseAction';
 import { ButtonElement } from './styled';
 import { getResult } from '../../utils/getResult';
-import { evaluate } from '../../store/slices/calculatorSlice';
+import { clear, evaluate } from '../../store/slices/calculatorSlice';
 
-const Button = ({ type, value, children }, ...props) => {
+const Button = ({ type, value, children, disabled, resetError }, props) => {
   const state = useSelector((state) => state.calculator);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const action = chooseAction(type, value);
+
+  useEffect(() => {
+    if (error) {
+      throw error;
+    }
+  }, [error]);
 
   const clickHandler = () => {
     if (type === 'evaluate') {
@@ -17,32 +24,17 @@ const Button = ({ type, value, children }, ...props) => {
         const action = evaluate({ result });
         return dispatch(action);
       } catch (error) {
-        const action = evaluate({ result: error });
-        return dispatch(action);
+        const clearOutput = clear();
+        dispatch(clearOutput);
+        setError(error);
       }
     } else {
       return dispatch(action);
     }
   };
 
-  if (state.error) {
-    if (type === 'clear') {
-      return (
-        <ButtonElement onClick={clickHandler} {...props}>
-          {children}
-        </ButtonElement>
-      );
-    } else {
-      return (
-        <ButtonElement disabled onClick={clickHandler} {...props}>
-          {children}
-        </ButtonElement>
-      );
-    }
-  }
-
   return (
-    <ButtonElement onClick={clickHandler} {...props}>
+    <ButtonElement onClick={resetError ? resetError : clickHandler} disabled={disabled} {...props}>
       {children}
     </ButtonElement>
   );
