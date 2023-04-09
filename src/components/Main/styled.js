@@ -12,13 +12,4 @@ const CalculatorWrapper = styled.div`
   padding: 16px 20px;
 `;
 
-const HistoryWrapper = styled.div`
-  background-color: black;
-  height: calc(100vh - 59px);
-  width: 25%;
-  padding: 16px;
-`;
-
-export {
-  MainElement, Wrapper, CalculatorWrapper, HistoryWrapper,
-};
+export { MainElement, Wrapper, CalculatorWrapper };

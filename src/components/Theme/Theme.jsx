@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { changeTheme } from '@store/slices/themeSlice';
+
 import { ThemeProvider } from 'styled-components';
-import { changeTheme } from '../../store/slices/themeSlice';
 
 const dark = {
   name: 'dark-theme',

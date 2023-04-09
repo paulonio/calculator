@@ -1,7 +1,9 @@
 import React from 'react';
-import Nav from '../Nav/Nav';
+
+import Nav from '@components/Nav/Nav';
+import { Container } from '@components/Container/Container';
+
 import { HeaderElement, Wrapper, Title } from './styled';
-import { Container } from '../Container/Container';
 
 const Header = () => {
   return (

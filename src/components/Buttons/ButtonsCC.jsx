@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { buttons } from '../../constants/constants';
+
+import { buttons } from '@constants/constants';
+
+import ButtonCC from '@components/Button/ButtonCC';
+
 import { Wrapper } from './styled';
-import ButtonCC from '../Button/ButtonCC';
 
 class ButtonsCC extends Component {
   render() {

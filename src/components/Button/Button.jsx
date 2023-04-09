@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import chooseAction from '../../utils/chooseAction';
-import { ButtonElement } from './styled';
-import { getResult } from '../../utils/getResult';
-import { clear, evaluate } from '../../store/slices/calculatorSlice';
 import PropTypes from 'prop-types';
+
+import { clear, evaluate } from '@store/slices/calculatorSlice';
+
+import chooseAction from '@utils/chooseAction';
+import { getResult } from '@utils/getResult';
+
+import { ButtonElement } from './styled';
 
 const Button = ({ type, value, children, disabled, resetError }, props) => {
   const state = useSelector((state) => state.calculator);

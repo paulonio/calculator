@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { ButtonElement } from './styled';
-import chooseAction from '../../utils/chooseAction';
 import { connect } from 'react-redux';
-import { getResult } from '../../utils/getResult';
-import { clear, evaluate } from '../../store/slices/calculatorSlice';
 import PropTypes from 'prop-types';
+
+import { clear, evaluate } from '@store/slices/calculatorSlice';
+
+import chooseAction from '@utils/chooseAction';
+import { getResult } from '@utils/getResult';
+
+import { ButtonElement } from './styled';
 
 class ButtonCC extends Component {
   constructor(props) {

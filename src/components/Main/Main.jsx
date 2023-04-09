@@ -1,9 +1,11 @@
 import React from 'react';
-import { CalculatorWrapper, HistoryWrapper, MainElement, Wrapper } from './styled';
-import { Container } from '../Container/Container';
-import Calculator from '../Calculator/Calculator';
-import History from '../History/History';
 import { useSelector } from 'react-redux';
+
+import { Container } from '@components/Container/Container';
+import Calculator from '@components/Calculator/Calculator';
+import History from '@components/History/History';
+
+import { CalculatorWrapper, MainElement, Wrapper } from './styled';
 
 const Main = () => {
   const showHistory = useSelector((state) => state.history.showHistory);

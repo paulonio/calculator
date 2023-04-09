@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import ButtonsCC from '../Buttons/ButtonsCC';
-import OutputCC from '../Output/OutputCC';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+
+import ButtonsCC from '@components/Buttons/ButtonsCC';
+import OutputCC from '@components/Output/OutputCC';
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 
 class CalculatorCC extends Component {
   render() {

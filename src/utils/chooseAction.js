@@ -9,7 +9,7 @@ import {
   clearAll,
   deleteDigit,
   evaluate,
-} from '../store/slices/calculatorSlice';
+} from '@store/slices/calculatorSlice';
 
 const chooseAction = (type, value) => {
   switch (type) {

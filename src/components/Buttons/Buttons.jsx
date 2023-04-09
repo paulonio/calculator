@@ -1,7 +1,10 @@
 import React from 'react';
-import Button from '../Button/Button';
-import { buttons } from '../../constants/constants';
 import PropTypes from 'prop-types';
+
+import { buttons } from '@constants/constants';
+
+import Button from '@components/Button/Button';
+
 import { Wrapper } from './styled';
 
 const Buttons = ({ isError, resetError }) => {

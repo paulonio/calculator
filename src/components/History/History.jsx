@@ -1,6 +1,7 @@
 import React from 'react';
-import { List, ListItem, Wrapper, Title } from './styled';
 import { useSelector } from 'react-redux';
+
+import { List, ListItem, Wrapper, Title } from './styled';
 
 const History = () => {
   const history = useSelector((state) => state.calculator.history);

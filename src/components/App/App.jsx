@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { RouterElement } from '../../routes';
+
+import { RouterElement } from '@routes';
+import { toggleHistory } from '@store/slices/historySlice';
+
+import Header from '@components/Header/Header';
+import Theme from '@components/Theme/Theme';
+
 import { createGlobalStyle } from 'styled-components';
-import Header from '../Header/Header';
-import Theme from '../Theme/Theme';
-import { toggleHistory } from '../../store/slices/historySlice';
 
 const Global = createGlobalStyle`
   * {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Buttons from '../Buttons/Buttons';
-import Output from '../Output/Output';
-import OutputCC from '../Output/OutputCC';
-import ButtonsCC from '../Buttons/ButtonsCC';
 import PropTypes from 'prop-types';
+
+import Buttons from '@components/Buttons/Buttons';
+import Output from '@components/Output/Output';
+import OutputCC from '@components/Output/OutputCC';
+import ButtonsCC from '@components/Buttons/ButtonsCC';
 
 class ErrorBoundary extends Component {
   constructor(props) {

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { MainElement, Wrapper, CalculatorWrapper } from './styled';
-import { Container } from '../Container/Container';
-import CalculatorCC from '../Calculator/CalculatorCC';
-import HistoryCC from '../History/HistoryCC';
 import { connect } from 'react-redux';
+
+import { Container } from '@components/Container/Container';
+import CalculatorCC from '@components/Calculator/CalculatorCC';
+import HistoryCC from '@components/History/HistoryCC';
+
+import { MainElement, Wrapper, CalculatorWrapper } from './styled';
 
 class MainCC extends Component {
   render() {
