@@ -1,27 +1,30 @@
-const priorities = {
-  default: 0,
-  '+': 1,
-  '-': 1,
-  '×': 2,
-  '÷': 2,
-  '%': 2,
-};
+import Calculator from './Calculator';
+import {
+  AddCommand,
+  DivideCommand,
+  ModCommand,
+  MultiplyCommand,
+  SubtractCommand,
+} from './commands';
+import { PRIORITIES } from '@constants/constants';
+
+const calculator = new Calculator();
 
 const evaluate = ({ first, second, operation }) => {
   switch (operation) {
     case '+':
-      return first + second;
+      return calculator.execute(new AddCommand(first, second));
     case '-':
-      return first - second;
+      return calculator.execute(new SubtractCommand(first, second));
     case '×':
-      return first * second;
+      return calculator.execute(new MultiplyCommand(first, second));
     case '÷':
       if (second === 0) {
         throw new Error('You cannot divide by zero!');
       }
-      return first / second;
+      return calculator.execute(new DivideCommand(first, second));
     case '%':
-      return first % second;
+      return calculator.execute(new ModCommand(first, second));
   }
 };
 
@@ -32,9 +35,9 @@ const evals = (expression) => {
     if (typeof item === 'number') {
       numbers.push(item);
     }
-    if (priorities[item]) {
+    if (PRIORITIES[item]) {
       let lastOperation = operations[operations.length - 1] || 'default';
-      while (priorities[item] <= priorities[lastOperation]) {
+      while (PRIORITIES[item] <= PRIORITIES[lastOperation]) {
         const second = numbers.pop();
         const first = numbers.pop();
         const operation = operations.pop();

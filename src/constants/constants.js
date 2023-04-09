@@ -24,3 +24,12 @@ export const buttons = [
   { id: '23', type: 'parenthesis', value: ')' },
   { id: '24', type: 'evaluate', value: '=' },
 ];
+
+export const PRIORITIES = {
+  default: 0,
+  '+': 1,
+  '-': 1,
+  '×': 2,
+  '÷': 2,
+  '%': 2,
+};
