@@ -17,14 +17,12 @@ const SettingsMain = () => {
     const theme = event.target.value;
     const action = changeTheme({ theme });
     dispatch(action);
-    localStorage.setItem('theme', theme);
   };
 
   const handleHistoryChange = (event) => {
     const showHistory = event.target.checked;
     const action = toggleHistory({ showHistory });
     dispatch(action);
-    localStorage.setItem('show-history', showHistory);
   };
 
   return (

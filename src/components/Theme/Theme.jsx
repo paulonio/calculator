@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { changeTheme } from '@store/slices/themeSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -29,17 +27,7 @@ const light = {
 
 const Theme = ({ children }) => {
   const theme = useSelector((state) => state.theme.theme);
-  const dispatch = useDispatch();
   const currentTheme = theme === 'light' ? light : dark;
-
-  useEffect(() => {
-    const theme = localStorage.getItem('theme');
-
-    if (theme) {
-      const action = changeTheme({ theme });
-      dispatch(action);
-    }
-  }, []);
 
   return <ThemeProvider theme={currentTheme}>{children}</ThemeProvider>;
 };

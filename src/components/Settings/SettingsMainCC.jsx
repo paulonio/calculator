@@ -13,14 +13,12 @@ class SettingsMainCC extends Component {
     const theme = event.target.value;
     const action = changeTheme({ theme });
     this.props.dispatch(action);
-    localStorage.setItem('theme', theme);
   }
 
   handleHistoryChange(event) {
     const showHistory = event.target.checked;
     const action = toggleHistory({ showHistory });
     this.props.dispatch(action);
-    localStorage.setItem('show-history', showHistory);
   }
 
   render() {
