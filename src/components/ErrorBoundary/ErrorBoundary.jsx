@@ -3,6 +3,7 @@ import Buttons from '../Buttons/Buttons';
 import Output from '../Output/Output';
 import OutputCC from '../Output/OutputCC';
 import ButtonsCC from '../Buttons/ButtonsCC';
+import PropTypes from 'prop-types';
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -38,5 +39,10 @@ class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  isClass: PropTypes.bool,
+  children: PropTypes.arrayOf(PropTypes.element),
+};
 
 export default ErrorBoundary;

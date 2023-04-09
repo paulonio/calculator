@@ -5,7 +5,6 @@ const initialState = {
   currentOperand: '',
   overwrite: false,
   history: [],
-  error: null,
 };
 
 export const calculatorSlice = createSlice({
@@ -144,7 +143,6 @@ export const calculatorSlice = createSlice({
         previousOperations: [],
         history: [...state.history],
         overwrite: false,
-        error: null,
       };
     },
     clearHistory: (state) => {
@@ -164,7 +162,6 @@ export const calculatorSlice = createSlice({
           previousOperations: [],
           history: [...state.history],
           overwrite: false,
-          error: null,
         };
       }
       return {
@@ -203,14 +200,6 @@ export const calculatorSlice = createSlice({
       }
       if (state.currentOperand[state.currentOperand.length - 1] === '.') {
         return state;
-      }
-      if (typeof action.payload.result === 'object') {
-        return {
-          ...state,
-          previousOperations: [],
-          currentOperand: action.payload.result.error,
-          error: action.payload.result,
-        };
       }
       return {
         ...state,

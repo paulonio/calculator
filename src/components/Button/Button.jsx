@@ -4,6 +4,7 @@ import chooseAction from '../../utils/chooseAction';
 import { ButtonElement } from './styled';
 import { getResult } from '../../utils/getResult';
 import { clear, evaluate } from '../../store/slices/calculatorSlice';
+import PropTypes from 'prop-types';
 
 const Button = ({ type, value, children, disabled, resetError }, props) => {
   const state = useSelector((state) => state.calculator);
@@ -38,6 +39,14 @@ const Button = ({ type, value, children, disabled, resetError }, props) => {
       {children}
     </ButtonElement>
   );
+};
+
+Button.propTypes = {
+  type: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  resetError: PropTypes.func,
 };
 
 export default Button;

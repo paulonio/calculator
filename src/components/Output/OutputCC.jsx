@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Current, PreviousResults, Wrapper } from './styled';
 
 class OutputCC extends Component {
@@ -10,11 +11,17 @@ class OutputCC extends Component {
     return (
       <Wrapper>
         <PreviousResults>{previous.join(' ')}</PreviousResults>
-        <Current>{error ? error : current}</Current>
+        <Current>{error ? error.message : current}</Current>
       </Wrapper>
     );
   }
 }
+
+OutputCC.propTypes = {
+  previous: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  current: PropTypes.string,
+  error: PropTypes.instanceOf(Error),
+};
 
 function mapStateToProps(state) {
   const previous = state.calculator.previousOperations;

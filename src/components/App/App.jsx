@@ -20,6 +20,7 @@ const Global = createGlobalStyle`
 
 const App = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const isHistoryShown = localStorage.getItem('show-history');
     const showHistory = isHistoryShown === 'true' ? true : false;

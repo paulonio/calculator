@@ -17,7 +17,7 @@ const evaluate = ({ first, second, operation }) => {
       return first * second;
     case '÷':
       if (second === 0) {
-        throw { error: 'You cannot divide by zero!' };
+        throw new Error('You cannot divide by zero!');
       }
       return first / second;
     case '%':
@@ -70,14 +70,14 @@ const evals = (expression) => {
     const first = numbers.pop();
     const operation = operations.pop();
     if (operation === '(') {
-      throw { error: 'One parenthesis' };
+      throw new Error('One parenthesis');
     }
     const action = { first, second, operation };
     const result = evaluate(action);
     numbers.push(result);
   }
   if ((!numbers[0] || Number.isNaN(numbers[0])) && numbers[0] !== 0) {
-    throw { error: 'Incorrect expression!' };
+    throw new Error('Incorrect expression!');
   }
   return numbers;
 };

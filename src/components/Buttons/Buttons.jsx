@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 import { buttons } from '../../constants/constants';
+import PropTypes from 'prop-types';
 import { Wrapper } from './styled';
 
 const Buttons = ({ isError, resetError }) => {
@@ -29,6 +30,11 @@ const Buttons = ({ isError, resetError }) => {
       })}
     </Wrapper>
   );
+};
+
+Buttons.propTypes = {
+  isError: PropTypes.bool,
+  resetError: PropTypes.func,
 };
 
 export default Buttons;
