@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 25%;
+  max-height: calc(100vh - 88px);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -16,9 +17,10 @@ const Title = styled.h3`
 `;
 
 const List = styled.ul`
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
   color: ${({ theme }) => theme.colors.text};
+  overflow-y: auto;
 `;
 
 const ListItem = styled.li`
