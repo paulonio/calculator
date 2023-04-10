@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Container } from '@components/Container/Container';
+import Container from '@components/Container/Container';
 import Calculator from '@components/Calculator/Calculator';
 import History from '@components/History/History';
 

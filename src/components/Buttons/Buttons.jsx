@@ -5,7 +5,7 @@ import { buttons } from '@constants/constants';
 
 import Button from '@components/Button/Button';
 
-import { Wrapper } from './styled';
+import Wrapper from './styled';
 
 const Buttons = ({ isError, resetError }) => {
   return (

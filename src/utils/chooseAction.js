@@ -35,6 +35,7 @@ const chooseAction = (type, value) => {
       return evaluate({ result: value });
     default:
   }
+  return null;
 };
 
 export default chooseAction;

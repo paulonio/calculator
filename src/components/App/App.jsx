@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { RouterElement } from '@routes';
+import RouterElement from '@routes';
 
 import Header from '@components/Header/Header';
 import Theme from '@components/Theme/Theme';

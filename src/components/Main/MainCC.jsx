@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Container } from '@components/Container/Container';
+import Container from '@components/Container/Container';
 import CalculatorCC from '@components/Calculator/CalculatorCC';
 import HistoryCC from '@components/History/HistoryCC';
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { changeTheme } from '@store/slices/themeSlice';
 import { toggleHistory } from '@store/slices/historySlice';
 
-import { Container } from '@components/Container/Container';
+import Container from '@components/Container/Container';
 
 import { SettingsElement, Wrapper, Select, Title, Label, Checkbox } from './styled';
 

@@ -1,12 +1,11 @@
 import { PRIORITIES } from '@constants/constants';
 import Calculator from './Calculator';
-import {
-  AddCommand,
-  DivideCommand,
-  ModCommand,
-  MultiplyCommand,
-  SubtractCommand,
-} from './commands';
+
+import AddCommand from './commands/AddCommand';
+import SubtractCommand from './commands/SubtractCommand';
+import MultiplyCommand from './commands/MultiplyCommand';
+import DivideCommand from './commands/DivideCommand';
+import ModCommand from './commands/ModCommand';
 
 const calculator = new Calculator();
 
@@ -27,6 +26,7 @@ const evaluate = ({ first, second, operation }) => {
       return calculator.execute(new ModCommand(first, second));
     default:
   }
+  return null;
 };
 
 const evals = (expression) => {

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { clear, evaluate } from '@store/slices/calculatorSlice';
 
 import chooseAction from '@utils/chooseAction';
-import { getResult } from '@utils/getResult';
+import getResult from '@utils/getResult';
 
-import { ButtonElement } from './styled';
+import ButtonElement from './styled';
 
 const Button = ({ type, value, children, disabled, resetError }, props) => {
   const current = useSelector((state) => state.calculator.currentOperand);
@@ -24,14 +24,16 @@ const Button = ({ type, value, children, disabled, resetError }, props) => {
 
   const clickHandler = () => {
     if (type === 'evaluate') {
-      try {
-        const result = getResult(current, previous);
-        const action = evaluate({ result });
-        return dispatch(action);
-      } catch (error) {
-        const clearOutput = clear();
-        dispatch(clearOutput);
-        setError(error);
+      if (previous.length > 0) {
+        try {
+          const result = getResult(current, previous);
+          const action = evaluate({ result });
+          return dispatch(action);
+        } catch (error) {
+          const clearOutput = clear();
+          dispatch(clearOutput);
+          setError(error);
+        }
       }
     } else {
       return dispatch(action);

@@ -1,9 +1,6 @@
 import evals from './evals';
 
 const getResult = (current, previous) => {
-  if (previous.length === 0) {
-    return;
-  }
   const operand = !Number.isNaN(current) && Number(current);
   let [result] = current === '' ? evals([...previous]) : evals([...previous, operand]);
   if (!Number.isInteger(result)) {
@@ -18,4 +15,4 @@ const getResult = (current, previous) => {
   return result;
 };
 
-export { getResult };
+export default getResult;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Nav from '@components/Nav/Nav';
-import { Container } from '@components/Container/Container';
+import Container from '@components/Container/Container';
 
 import { HeaderElement, Wrapper, Title } from './styled';
 

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { clear, evaluate } from '@store/slices/calculatorSlice';
 
 import chooseAction from '@utils/chooseAction';
-import { getResult } from '@utils/getResult';
+import getResult from '@utils/getResult';
 
-import { ButtonElement } from './styled';
+import ButtonElement from './styled';
 
 class ButtonCC extends Component {
   constructor(props) {

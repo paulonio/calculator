@@ -4,7 +4,7 @@ import { buttons } from '@constants/constants';
 
 import ButtonCC from '@components/Button/ButtonCC';
 
-import { Wrapper } from './styled';
+import Wrapper from './styled';
 
 class ButtonsCC extends Component {
   render() {
