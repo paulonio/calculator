@@ -74,7 +74,7 @@ const evals = (expression) => {
     const first = numbers.pop();
     const operation = operations.pop();
     if (operation === '(') {
-      throw new Error('Incorrect using of parentheses');
+      throw new Error('Incorrect using of parentheses!');
     }
     const action = { first, second, operation };
     const result = evaluate(action);
