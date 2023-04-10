@@ -53,4 +53,6 @@ class ModCommand {
   }
 }
 
-export { AddCommand, SubtractCommand, MultiplyCommand, DivideCommand, ModCommand };
+export {
+  AddCommand, SubtractCommand, MultiplyCommand, DivideCommand, ModCommand,
+};

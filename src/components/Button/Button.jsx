@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { clear, evaluate } from '@store/slices/calculatorSlice';
@@ -10,7 +10,8 @@ import { getResult } from '@utils/getResult';
 import { ButtonElement } from './styled';
 
 const Button = ({ type, value, children, disabled, resetError }, props) => {
-  const state = useSelector((state) => state.calculator);
+  const current = useSelector((state) => state.calculator.currentOperand);
+  const previous = useSelector((state) => state.calculator.previousOperations, shallowEqual);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const action = chooseAction(type, value);
@@ -24,7 +25,7 @@ const Button = ({ type, value, children, disabled, resetError }, props) => {
   const clickHandler = () => {
     if (type === 'evaluate') {
       try {
-        const result = getResult(state);
+        const result = getResult(current, previous);
         const action = evaluate({ result });
         return dispatch(action);
       } catch (error) {

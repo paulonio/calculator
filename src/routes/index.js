@@ -4,4 +4,4 @@ import { routes } from '@constants/routes';
 
 const RouterElement = () => useRoutes(routes);
 
-export { RouterElement };
+export default RouterElement;

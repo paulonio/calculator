@@ -53,4 +53,6 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   margin-right: 8px;
 `;
 
-export { SettingsElement, Wrapper, Title, Select, Label, Checkbox };
+export {
+  SettingsElement, Wrapper, Title, Select, Label, Checkbox,
+};

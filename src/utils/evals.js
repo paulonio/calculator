@@ -1,3 +1,4 @@
+import { PRIORITIES } from '@constants/constants';
 import Calculator from './Calculator';
 import {
   AddCommand,
@@ -6,7 +7,6 @@ import {
   MultiplyCommand,
   SubtractCommand,
 } from './commands';
-import { PRIORITIES } from '@constants/constants';
 
 const calculator = new Calculator();
 
@@ -25,6 +25,7 @@ const evaluate = ({ first, second, operation }) => {
       return calculator.execute(new DivideCommand(first, second));
     case '%':
       return calculator.execute(new ModCommand(first, second));
+    default:
   }
 };
 
@@ -73,7 +74,7 @@ const evals = (expression) => {
     const first = numbers.pop();
     const operation = operations.pop();
     if (operation === '(') {
-      throw new Error('One parenthesis');
+      throw new Error('Incorrect using of parentheses');
     }
     const action = { first, second, operation };
     const result = evaluate(action);

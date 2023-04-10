@@ -6,12 +6,10 @@ export const historySlice = createSlice({
   name: 'history',
   initialState,
   reducers: {
-    toggleHistory: (state, action) => {
-      return {
-        ...state,
-        showHistory: action.payload.showHistory,
-      };
-    },
+    toggleHistory: (state, action) => ({
+      ...state,
+      showHistory: action.payload.showHistory,
+    }),
   },
 });
 

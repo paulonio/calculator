@@ -49,11 +49,11 @@ export const calculatorSlice = createSlice({
       }
       if (!state.currentOperand) {
         if (
-          lastSymbol === '+' ||
-          lastSymbol === '-' ||
-          lastSymbol === '×' ||
-          lastSymbol === '÷' ||
-          lastSymbol === '%'
+          lastSymbol === '+'
+          || lastSymbol === '-'
+          || lastSymbol === '×'
+          || lastSymbol === '÷'
+          || lastSymbol === '%'
         ) {
           return {
             ...state,
@@ -136,24 +136,22 @@ export const calculatorSlice = createSlice({
         currentOperand: '',
       };
     },
-    clear: (state) => {
-      return {
-        ...state,
-        currentOperand: '',
-        previousOperations: [],
-        history: [...state.history],
-        overwrite: false,
-      };
-    },
+    clear: (state) => ({
+      ...state,
+      currentOperand: '',
+      previousOperations: [],
+      overwrite: false,
+    }),
     clearHistory: (state) => {
+      if (state.history.length === 0) {
+        return state;
+      }
       return {
         ...state,
         history: [],
       };
     },
-    clearAll: () => {
-      return initialState;
-    },
+    clearAll: () => initialState,
     deleteDigit: (state) => {
       if (state.overwrite) {
         return {

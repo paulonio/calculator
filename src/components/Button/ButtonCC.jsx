@@ -26,8 +26,9 @@ class ButtonCC extends Component {
     const value = this.props.value;
     if (type === 'evaluate') {
       try {
-        const state = this.props.expression;
-        const result = getResult(state);
+        const current = this.props.current;
+        const previous = this.props.previous;
+        const result = getResult(current, previous);
         const action = evaluate({ result });
         this.props.dispatch(action);
       } catch (error) {
@@ -66,8 +67,9 @@ ButtonCC.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const expression = state.calculator;
-  return { expression };
+  const current = state.calculator.currentOperand;
+  const previous = state.calculator.previousOperations;
+  return { current, previous };
 }
 
 export default connect(mapStateToProps)(ButtonCC);

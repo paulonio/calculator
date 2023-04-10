@@ -33,6 +33,7 @@ const chooseAction = (type, value) => {
       return changeSign();
     case 'evaluate':
       return evaluate({ result: value });
+    default:
   }
 };
 

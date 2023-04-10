@@ -31,4 +31,6 @@ const ListItem = styled.li`
   }
 `;
 
-export { Wrapper, Title, List, ListItem };
+export {
+  Wrapper, Title, List, ListItem,
+};

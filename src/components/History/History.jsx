@@ -1,10 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 
 import { List, ListItem, Wrapper, Title } from './styled';
 
 const History = () => {
-  const history = useSelector((state) => state.calculator.history);
+  const history = useSelector((state) => state.calculator.history, shallowEqual);
 
   return (
     <Wrapper>

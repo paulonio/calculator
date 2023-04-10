@@ -9,4 +9,4 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export { Wrapper };
+export default Wrapper;

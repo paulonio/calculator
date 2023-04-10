@@ -1,16 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Current, PreviousResults, Wrapper } from './styled';
 
 const Output = ({ error }) => {
-  const state = useSelector((state) => state.calculator);
+  const current = useSelector((state) => state.calculator.currentOperand);
+  const previous = useSelector((state) => state.calculator.previousOperations, shallowEqual);
 
   return (
     <Wrapper>
-      <PreviousResults>{state.previousOperations.join(' ')}</PreviousResults>
-      <Current>{error ? error.message : state.currentOperand}</Current>
+      <PreviousResults>{previous.join(' ')}</PreviousResults>
+      <Current>{error ? error.message : current}</Current>
     </Wrapper>
   );
 };

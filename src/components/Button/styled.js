@@ -38,4 +38,4 @@ const ButtonElement = styled.button`
   }
 `;
 
-export { ButtonElement };
+export default ButtonElement;

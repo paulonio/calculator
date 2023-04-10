@@ -7,4 +7,4 @@ const routes = [
   { path: 'settingsCC', element: lazyLoadRoutes('SettingsCC') },
 ];
 
-export { routes };
+export default routes;
