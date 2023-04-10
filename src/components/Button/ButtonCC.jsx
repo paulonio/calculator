@@ -25,16 +25,18 @@ class ButtonCC extends Component {
     const type = this.props.type;
     const value = this.props.value;
     if (type === 'evaluate') {
-      try {
-        const current = this.props.current;
-        const previous = this.props.previous;
-        const result = getResult(current, previous);
-        const action = evaluate({ result });
-        this.props.dispatch(action);
-      } catch (error) {
-        const clearOutput = clear();
-        this.props.dispatch(clearOutput);
-        this.setState({ error });
+      const current = this.props.current;
+      const previous = this.props.previous;
+      if (previous.length > 0) {
+        try {
+          const result = getResult(current, previous);
+          const action = evaluate({ result });
+          this.props.dispatch(action);
+        } catch (error) {
+          const clearOutput = clear();
+          this.props.dispatch(clearOutput);
+          this.setState({ error });
+        }
       }
     } else {
       const action = chooseAction(type, value);
