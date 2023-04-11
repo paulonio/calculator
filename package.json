@@ -6,24 +6,27 @@
   "author": "Paul <paul.dashkevich@yandex.ru>",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^5.76.3",
-    "webpack-cli": "^5.0.1",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.2",
     "eslint": "^8.36.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
-    "@babel/core": "^7.21.3",
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-react": "^7.18.6",
-    "babel-loader": "^9.1.2",
     "html-webpack-plugin": "^5.5.0",
+    "start-server-and-test": "^2.0.0",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.1"
   },
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "lint": "./node_modules/.bin/eslint ./src"
+    "lint": "./node_modules/.bin/eslint ./src",
+    "test": "start-server-and-test start http://localhost:3000 cypress",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",

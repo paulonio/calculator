@@ -11,8 +11,8 @@ class OutputCC extends Component {
     const error = this.props.error;
     return (
       <Wrapper>
-        <PreviousResults>{previous.join(' ')}</PreviousResults>
-        <Current>{error ? error.message : current}</Current>
+        <PreviousResults data-test-id="previous-output">{previous.join(' ')}</PreviousResults>
+        <Current data-test-id="current-output">{error ? error.message : current}</Current>
       </Wrapper>
     );
   }
