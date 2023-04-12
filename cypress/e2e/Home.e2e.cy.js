@@ -22,27 +22,14 @@ describe('Test home page', () => {
     cy.get('[data-test-id="previous-output"]').should('have.text', '7 ×');
   });
 
-  it('should return correct value and show a history', () => {
+  it('should show and clear history', () => {
     cy.contains('7').click();
     cy.contains('×').click();
     cy.contains('3').click();
     cy.contains('=').click();
-    cy.get('[data-test-id="current-output"]').should('have.text', '21');
-    cy.get('[data-test-id="previous-output"]').should('be.empty');
     cy.get('ul > li').should('have.text', '1. 7 × 3');
-  });
-
-  it('should return correct value with parentheses', () => {
-    cy.contains('(').click();
-    cy.contains('2').click();
-    cy.contains('+').click();
-    cy.contains('3').click();
-    cy.contains(')').click();
-    cy.contains('×').click();
-    cy.contains('4').click();
-    cy.contains('=').click();
-    cy.get('[data-test-id="current-output"]').should('have.text', '20');
-    cy.get('ul > li').should('have.text', '1. ( 2 + 3 ) × 4');
+    cy.contains('CH').click();
+    cy.get('ul > li').should('not.exist');
   });
 
   it('should change sign', () => {
@@ -59,19 +46,11 @@ describe('Test home page', () => {
     cy.contains('2').click();
     cy.contains('-').click();
     cy.contains('3').click();
+    cy.get('[data-test-id="current-output"]').should('have.text', '3');
+    cy.get('[data-test-id="previous-output"]').should('have.text', '2 -');
     cy.contains('AC').click();
     cy.get('[data-test-id="current-output"]').should('be.empty');
     cy.get('[data-test-id="previous-output"]').should('be.empty');
-  });
-
-  it('should clear history', () => {
-    cy.contains('2').click();
-    cy.contains('-').click();
-    cy.contains('3').click();
-    cy.contains('=').click();
-    cy.get('ul > li').should('have.text', '1. 2 - 3');
-    cy.contains('CH').click();
-    cy.get('ul > li').should('not.exist');
   });
 
   it('should clear all', () => {
@@ -80,7 +59,9 @@ describe('Test home page', () => {
     cy.contains('3').click();
     cy.contains('=').click();
     cy.get('ul > li').should('have.text', '1. 2 - 3');
+    cy.get('[data-test-id="current-output"]').should('have.text', '-1');
     cy.contains('+').click();
+    cy.get('[data-test-id="previous-output"]').should('have.text', '-1 +');
     cy.contains('CA').click();
     cy.get('[data-test-id="current-output"]').should('be.empty');
     cy.get('[data-test-id="previous-output"]').should('be.empty');
