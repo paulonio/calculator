@@ -15,7 +15,7 @@ class ButtonsCC extends Component {
       if (isError) {
         if (type === 'clear') {
           return (
-            <ButtonCC key={value} type={type} value={value} onClick={resetError}>
+            <ButtonCC key={value} type={type} value={value} resetError={resetError}>
               {value}
             </ButtonCC>
           );
