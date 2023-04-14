@@ -46,9 +46,7 @@ class ButtonCC extends Component {
 
   render() {
     return (
-      <ButtonElement onClick={this.clickHandler.bind(this)} {...this.props}>
-        {this.props.children}
-      </ButtonElement>
+      <ButtonElement onClick={this.clickHandler.bind(this)}>{this.props.children}</ButtonElement>
     );
   }
 }

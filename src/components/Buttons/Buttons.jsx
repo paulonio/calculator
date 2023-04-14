@@ -1,38 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { buttons } from '@constants/constants';
+import { BUTTONS } from '@constants/constants';
 
 import Button from '@components/Button/Button';
 
 import Wrapper from './styled';
 
 const Buttons = ({ isError, resetError }) => {
-  return (
-    <Wrapper>
-      {buttons.map(({ id, type, value }) => {
-        if (isError) {
-          if (type === 'clear') {
-            return (
-              <Button key={id} type={type} value={value} resetError={resetError}>
-                {value}
-              </Button>
-            );
-          }
-          return (
-            <Button key={id} disabled={isError} type={type} value={value}>
-              {value}
-            </Button>
-          );
-        }
+  const buttons = BUTTONS.map(({ type, value }) => {
+    if (isError) {
+      if (type === 'clear') {
         return (
-          <Button key={id} type={type} value={value}>
+          <Button key={value} type={type} value={value} resetError={resetError}>
             {value}
           </Button>
         );
-      })}
-    </Wrapper>
-  );
+      }
+      return (
+        <Button key={value} disabled={isError} type={type} value={value}>
+          {value}
+        </Button>
+      );
+    }
+    return (
+      <Button key={value} type={type} value={value}>
+        {value}
+      </Button>
+    );
+  });
+
+  return <Wrapper>{buttons}</Wrapper>;
 };
 
 Buttons.propTypes = {

@@ -9,7 +9,7 @@ import getResult from '@utils/getResult';
 
 import ButtonElement from './styled';
 
-const Button = ({ type, value, children, disabled, resetError }, props) => {
+const Button = ({ type, value, children, disabled, resetError }) => {
   const current = useSelector((state) => state.calculator.currentOperand);
   const previous = useSelector((state) => state.calculator.previousOperations, shallowEqual);
   const [error, setError] = useState(null);
@@ -41,7 +41,7 @@ const Button = ({ type, value, children, disabled, resetError }, props) => {
   };
 
   return (
-    <ButtonElement onClick={resetError ? resetError : clickHandler} disabled={disabled} {...props}>
+    <ButtonElement onClick={resetError ? resetError : clickHandler} disabled={disabled}>
       {children}
     </ButtonElement>
   );

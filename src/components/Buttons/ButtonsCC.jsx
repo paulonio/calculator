@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { buttons } from '@constants/constants';
+import { BUTTONS } from '@constants/constants';
 
 import ButtonCC from '@components/Button/ButtonCC';
 
@@ -11,31 +11,29 @@ class ButtonsCC extends Component {
     const isError = this.props.isError;
     const resetError = this.props.resetError;
 
-    return (
-      <Wrapper>
-        {buttons.map(({ id, type, value }) => {
-          if (isError) {
-            if (type === 'clear') {
-              return (
-                <ButtonCC key={id} type={type} value={value} onClick={resetError}>
-                  {value}
-                </ButtonCC>
-              );
-            }
-            return (
-              <ButtonCC key={id} disabled={isError} type={type} value={value}>
-                {value}
-              </ButtonCC>
-            );
-          }
+    const buttons = BUTTONS.map(({ type, value }) => {
+      if (isError) {
+        if (type === 'clear') {
           return (
-            <ButtonCC key={id} type={type} value={value}>
+            <ButtonCC key={value} type={type} value={value} onClick={resetError}>
               {value}
             </ButtonCC>
           );
-        })}
-      </Wrapper>
-    );
+        }
+        return (
+          <ButtonCC key={value} disabled={isError} type={type} value={value}>
+            {value}
+          </ButtonCC>
+        );
+      }
+      return (
+        <ButtonCC key={value} type={type} value={value}>
+          {value}
+        </ButtonCC>
+      );
+    });
+
+    return <Wrapper>{buttons}</Wrapper>;
   }
 }
 
