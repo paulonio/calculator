@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store, { persistor } from '@store';
 
 import App from '@components/App/App';
+import Theme from '@components/Theme/Theme';
 
 const root = createRoot(document.querySelector('.root'));
 
@@ -15,8 +16,10 @@ root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
-        <App />
+        <Theme>
+          <App />
+        </Theme>
       </BrowserRouter>
     </PersistGate>
-  </Provider>,
+  </Provider>
 );
