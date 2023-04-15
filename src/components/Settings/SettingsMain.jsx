@@ -9,7 +9,7 @@ import Container from '@components/Container/Container';
 import { SettingsElement, Wrapper, Select, Title, Label, Checkbox } from './styled';
 
 const SettingsMain = () => {
-  const theme = useSelector((state) => state.theme.theme || '');
+  const theme = useSelector((state) => state.theme.theme);
   const showHistory = useSelector((state) => state.history.showHistory);
   const dispatch = useDispatch();
 

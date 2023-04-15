@@ -1,77 +1,26 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { clear, evaluate } from '@store/slices/calculatorSlice';
-
-import chooseAction from '@utils/chooseAction';
-import getResult from '@utils/getResult';
-
 import ButtonElement from './styled';
+import withClickHandler from '@hoc/withClickHandler';
 
 class ButtonCC extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { error: null };
-  }
-
-  componentDidUpdate(_, prevState) {
-    if (this.state.error !== prevState.error) {
-      throw this.state.error;
-    }
-  }
-
-  clickHandler() {
-    const type = this.props.type;
-    const value = this.props.value;
-    if (type === 'evaluate') {
-      const current = this.props.current;
-      const previous = this.props.previous;
-      if (previous.length > 0) {
-        try {
-          const result = getResult(current, previous);
-          const action = evaluate({ result });
-          this.props.dispatch(action);
-        } catch (error) {
-          const clearOutput = clear();
-          this.props.dispatch(clearOutput);
-          this.setState({ error });
-        }
-      }
-    } else {
-      const action = chooseAction(type, value);
-      this.props.dispatch(action);
-    }
-  }
-
   render() {
+    const { children, handleClick, disabled, resetError } = this.props;
+
     return (
-      <ButtonElement onClick={this.clickHandler.bind(this)} {...this.props}>
-        {this.props.children}
+      <ButtonElement onClick={resetError ? resetError : handleClick} disabled={disabled}>
+        {children}
       </ButtonElement>
     );
   }
 }
 
 ButtonCC.propTypes = {
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
-  expression: PropTypes.shape({
-    previousOperations: PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    ),
-    currentOperand: PropTypes.string,
-    overwrite: PropTypes.bool,
-    history: PropTypes.arrayOf(PropTypes.string),
-  }),
-  dispatch: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  resetError: PropTypes.func,
 };
 
-function mapStateToProps(state) {
-  const current = state.calculator.currentOperand;
-  const previous = state.calculator.previousOperations;
-  return { current, previous };
-}
-
-export default connect(mapStateToProps)(ButtonCC);
+export default withClickHandler(ButtonCC);
